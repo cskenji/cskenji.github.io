@@ -1,0 +1,283 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HBG Hotspot WIFI</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="captiveportal-bootstrap.min.css">
+    <link rel="stylesheet" href="captiveportal-jquery-loading.min.css">
+    <link rel="stylesheet" href="captiveportal-style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+
+    <!-- JavaScript -->
+    <script src="captiveportal-jquery3-1-1.min.js"></script>
+    <script src="captiveportal-tether.min.js"></script>
+    <script src="captiveportal-bootstrap.min.js"></script>
+    <script src="captiveportal-jquery-loading.js"></script>
+    <style>
+        .com {
+            width: 100%;
+            height: 50%;
+
+        }
+
+        .pic {
+            width: 77%;
+            height: 9%;
+            display: inline-block;
+        }
+
+        .logo-img {
+            width: 20%;
+            height: 40%;
+            display: inline-block;
+        }
+
+        .small-img {
+            width: 20%;
+            height: 20%;
+            display: inline-block;
+        }
+
+        div.sticky {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            background-color: Red;
+            padding: 50px;
+            font-size: 20px;
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #ED1C24;
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12 col-md-12 col-lg-12">
+                <div class="login">
+                    <div class="logo"><img src="captiveportal-hbg-logo.png" class="logo-img" /></div>
+                    <div class="text-header1">Free WIFI By HBG</div>
+                    <div class="text-footer">
+                        เพื่อให้เป็นไปตาม พรบ.คอมพิวเตอร์ โปรดอ่านเงื่อนไขการให้บริการ <a href="" data-toggle="modal"
+                            data-target="#detailModal">คลิก</a><br /><br />
+                        <center>
+                            <div class="login-help">
+
+                                <label class="label--checkbox">
+                                    <input type="checkbox" class="checkbox" onchange="checkaccept(this)">
+                                    <span>
+                                        <font color="red" size="4">ฉันยอมรับเงื่อนไขการใช้บริการ</font>
+                                    </span>
+                                </label>
+                                <br /><a href="" data-toggle="modal" data-target="#Div1">เข้าสู่ระบบด้วยรหัสผ่านเดิม</a>
+                            </div>
+
+
+                        </center>
+                        <div class="login-block">
+                            <form id="check-form" name="check-form">
+                                <h1><strong>HBG SMART LOGIN</strong></h1>
+
+                                <font color="red" size="4">ชี้แจง:</font>
+                                <font color="#8B4513" size="2">
+                                    <br />
+                                    <font color="white">
+                                        หากยังไม่เป็นเพื่อนกับเรา <br />กรุณาเพิ่มเพือนก่อนใช้งาน<br /></font>
+                                    <br />
+                                    <a href="https://line.me/R/ti/p/@837yfjaj" target="_blank">
+                                        <img src=captiveportal-line-bt.png alt="เพิ่มเพื่อน" class="pic" />
+                                    </a>
+                                    <br />
+                                    &nbsp;
+                                </font><input type="text" placeholder="LINE ID" id="idcard" value="Line ID"
+                                    maxlength="10" required=""
+                                    oninvalid="this.setCustomValidity('กรุณากรอกเบอร์โทรศัพท์ของคุณ')"
+                                    oninput="setCustomValidity('')" disabled style="display:none;" /><br />
+                                <input id="Button2" type="button" value="ขอรับรหัสผ่าน"
+                                    onclick="return Button2_onclick()" style="display: none;" />
+                                <input type="text" placeholder="OTP" id="voucher" maxlength="10" autocomplete="off"
+                                    disabled="disabled" required=""
+                                    oninvalid="this.setCustomValidity('กรุณากรอกคูปองรหัสผ่าน')"
+                                    oninput="setCustomValidity('')" />
+                                <div class="alert alert-danger alert-login" role="alert" style="display: none;">
+                                </div><br />
+                                <button type="submit" id="submit-login" disabled="disabled">เข้าสู่ระบบ</button>
+
+                            </form>
+                        </div>
+                        <center>
+                        </center>
+                        <div class="footer" style="font-size: small; color: #FFFFFF;">ระบบนี้ออกแบบและพัฒนาโดย
+                            HORNBILLSOLUTION<br />
+                            สอบถามปัญหาและข้อมูลการใช้งานเพิ่มเติม <br />โทร 053711605
+                        </div>
+                        <br /> <br />
+
+                        <br />
+                    </div>
+
+                </div>
+                <div class="dologin" style="display: none;">
+                    <form id="dologin-form" name="register-form">
+                        <button type="submit" id="submit-login" disabled="disabled">ล็อกอิน</button>
+                    </form>
+                </div>
+                <div class="modal fade" id="Div1" tabindex="-1" role="dialog" aria-labelledby="detailTitle"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="H1">เข้าระบบด้วยรหัสผ่านจากไลน์</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="login">
+                                    <div class="login-block">
+
+                                        <form id="Form1" name="oldpassword-form">
+
+                                            <input type="text" placeholder="รหัสผ่านที่ได้จากไลน์" id="Text2"
+                                                autocomplete="off" maxlength="10" required=""
+                                                oninvalid="this.setCustomValidity('กรุณากรอกรหัสที่ส่งให้ทางแอพพลิเคชั่นไลน์ ของคุณ')"
+                                                oninput="setCustomValidity('')" />
+
+                                            <button type="submit" id="Button1">เข้าสู่ระบบ </button>&nbsp;&nbsp;
+                                        </form>
+
+                                    </div>
+                                </div>
+                                <div class="alert alert-danger" role="alert">
+                                    <p>
+                                        <strong>หมายเหตุ :</strong>
+                                    <ul>
+                                        <li>ต้องเป็นเพื่อนกับบัญชี Official Account ของบริษัทก่อน</li>
+                                        <li>การขอรหัสผ่าน จะขอในนามบัญชีไลน์นั้น ๆ หมายความว่าหากนำรหัสนี้ไป Login
+                                            ที่อุปกรณ์ใดก็ตามจะถูก Login ในนามของไลน์บัญชีที่ใช้ขอรหัส</li>
+                                        <li>หากเข้าสู่ระบบโดยรหัสผ่านเดิมไม่ได้ให้ทำการขอรหัสใหม่ หรือติดต่อผู้ดูแลระบบ
+                                        </li>
+                                    </ul>
+
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="register" style="display: none;">
+                    <div class="logo"><img src="hbg-logo.png" width="100px" /></div>
+
+
+                    <div class="register-block">
+                        <form id="register-form" name="register-form">
+                            <h1>คุณยังไม่เคยเข้าสู่ระบบ โปรดลงทะเบียน</h1>
+                            <input type="text" placeholder="เบอร์โทรศัทพ์" id="idcard" maxlength="10" required=""
+                                autocomplete="off" oninvalid="this.setCustomValidity('กรุณากรอกเบอร์โทรศัพท์')"
+                                oninput="setCustomValidity('')" />
+                            <input type="text" placeholder="ชื่อจริง" id="firstname" maxlength="30" required=""
+                                oninvalid="this.setCustomValidity('กรุณากรอกชื่อจริงของคุณ')"
+                                oninput="setCustomValidity('')" />
+                            <input type="text" placeholder="นามสกุล" id="lastname" maxlength="30" required=""
+                                oninvalid="this.setCustomValidity('กรุณากรอกนามสกุลของคุณ')"
+                                oninput="setCustomValidity('')" />
+                            <!--   <input type="text" placeholder="เบอร์โทรศัทพ์" id="telephone" maxlength="10" required="" oninvalid="this.setCustomValidity('กรุณากรอกเบอร์โทรศัพท์ของคุณ')" oninput="setCustomValidity('')"/>  -->
+                            <div class="alert alert-danger alert-register" role="alert">
+                                <strong>คำชี้แจง เงื่อนไขการให้บริการ</strong>
+                                <ul>
+                                    <li>ต้องกรอกหมายเลขโทรศัพท์ให้ตรงกับความเป็นจริง เพราะระบบจะส่ง SMS
+                                        ที่เป็นรหัสผ่านสำหรับเชื่อมต่ออินเตอร์เน็ตเข้าไปยังเบอร์โทรที่ท่านลงทะเบียนไว้
+                                    </li>
+                                    <li>เพื่อให้เป็นไปตาม <a
+                                            href="http://isuzucr.ddns.net:204/index.php/s/9YOVmEv1DCFJCAD"
+                                            target="_blank" style="font-size: 12px;">พรบ.คอมพิวเตอร์ ปี2550 มาตรา ๒๖</a>
+                                        การใช้งานอินเตอร์เน็ตสาธารณะ ต้องมีการลงทะเบียนเพื่อยืนยันตัวบุคคล </li>
+                                    <li>เมื่อลงทะเบียนครั้งแรกเสร็จ ท่านสามารถใช้ได้อินเตอร์เน็ตกับกลุ่มนกเงือกทุกสาขา
+                                    </li>
+                                    <li>1 เบอร์โทรศัพท์ สามารถใช้งานอุปกรณ์ได้ 2 อุปกรณ์ต่อวัน
+                                        ซึงการใช้งานแต่ละรหัสจะสามารถใช้งานได้ 5 ชั่วโมง</li>
+                                    <li>บริษัทขอสงวนสิทธิ์ในการเปลี่ยนแปลงเงือนไขต่าง ๆ โดยไม่ต้องแจ้งล่วงหน้า </li>
+                                </ul>
+
+                            </div>
+                            <button type="submit" id="submit-register">ยอมรับเงื่อนไข สมัครใช้บริการ
+                            </button>&nbsp;&nbsp;
+                            <button type="reset" id="submit-reject" disabled>ปฏิเสธ</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div> <!-- col -->
+        </div> <!-- row -->
+        <div class="row">
+
+        </div>
+    </div>
+
+    <!-- Modal Detail -->
+    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailTitle"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailTitle">รายละเอียดเพิ่มเติม</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <img src="captiveportal-com.png" class="com" />
+                    <label>ขั้นตอนการใช้บริการ</label>
+                    <ol>
+                        <li>หากยังไม่เป็นเพื่อนกับเรา กดเพิ่มเพื่อนหรือ Scan QR CODE ณ จุดที่ให้บริการ</li>
+                        <li>จากนั้นไปเปิด แอพพลิเคชั่น ไลน์ ขึ้นมา แล้วกด ปุ่ม Login WIFI HOTSPOT</li>
+                        <li>จะได้ลิงค์สำหรับเชื่อมต่อ ให้กดลิงค์เพื่อยืนยันตัวตนสำหรับเข้าสู่ระบบ</li>
+                        <li>กดยอมรับเงื่อนไขการใช้บริการ แล้วกดปุ่ม เข้าสู่ระบบ</li>
+                        <li>บริษัทขอสงวนสิทธิ์ในการเปลี่ยนแปลงเงือนไขต่าง ๆ โดยไม่ต้องแจ้งล่วงหน้า</li>
+                    </ol>
+                    <div class="alert alert-danger" role="alert">
+                        <p><strong>หมายเหตุ :</strong>เมื่อท่านลงทะเบียนครั้งแรกแล้ว ท่านสามารถใช้ล็อกอิน Wi-Fi Hotspot
+                            By Hornbillgroup ได้ทุกสาขา</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <label>ขอบคุณที่ใช้บริการครับ</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        var url_username = "http://182.52.136.46:83/sms/Service_Customer.asmx/Checkvalue";
+        var url_icard = "http://182.52.136.46:83/sms/Service_Customer.asmx/CheckCustomer";
+        var url_register = "http://182.52.136.46:83/sms/service_customer.asmx/RegisCustomer";
+        var url_voucher = "http://182.52.136.46:83/sms/Service_Customer.asmx/CreateUserName";
+        var url_action = '$PORTAL_ACTION$';
+        var zone = '$PORTAL_ZONE$';
+        var redirurl = '$PORTAL_REDIRURL$';
+
+
+
+    </script>
+    <script src="captiveportal-hotspot.js"></script>
+</body>
+
+</html>
